@@ -1,7 +1,10 @@
 require:
   - rubocop-performance
+  - rubocop-rspec
   
 AllCops:
+  Exclude:
+    - 'codebreaker.gemspec'
   TargetRubyVersion: 3.1.2
   NewCops: enable
 
@@ -15,4 +18,4 @@ Style/HashSyntax:
   Enabled: false
 
 Metrics/BlockLength:
-  Enabled: false
+  IgnoredMethods: ['describe', 'context']

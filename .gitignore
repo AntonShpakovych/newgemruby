@@ -1,13 +1,3 @@
-/.bundle/
-/.yardoc
-/_yardoc/
 /coverage/
-/doc/
-/pkg/
-/spec/reports/
-/tmp/
 default.yml
-coverage/
-
-# rspec failure tracking
 .rspec_status

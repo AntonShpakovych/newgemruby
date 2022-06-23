@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'codebreaker'
+require_relative '../lib/codebreaker'
 require 'simplecov'
 
 RSpec.configure do |config|

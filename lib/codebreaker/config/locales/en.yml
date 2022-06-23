@@ -1,16 +1,19 @@
-# frozen_string_literal: true
-
-module Codebreaker
-  class Rules
-    RULES = "
+en:
+  guess: 'Number, required, length - 4 digits, each digit is a number in the range 1-6'
+  name: 'Name - string, required, min length - %{min_length} symbols, max length - %{max_length}'
+  empty_data: "Don't have data for save"
+  bad_file: "File doesn't exist or File doesn't have data"
+  message_for_attempts: 'You have not any attempts left'
+  message_for_hints: 'You have not any hints left'
+  rules: "
             1 - Codebreaker is a logic game in which a code-breaker tries to break a secret code created
                         by a code-maker.
-                        The codemaker, which will be played by the application we,re going to write,
-                        creates a secret code of four numbers between 1 and 6.
+                        The codemaker, which will be played by the application we're going to write,
+                        creates a secret code of four numbers between %{correct_range_first} and %{correct_range_last}.
 
             2 - The codebreaker gets some number of chances to break the code (depends on chosen difficulty).
-            In each turn, the codebreaker makes a guess of 4 numbers.
-            The codemaker then marks the guess with up to 4 signs - + or - or empty spaces.
+            In each turn, the codebreaker makes a guess of %{length_good} numbers.
+            The codemaker then marks the guess with up to %{length_good} signs - + or - or empty spaces.
 
             3 - A + indicates an exact match: one of the numbers in the guess is the same as one of the numbers in
                                                                       the secret code and in the same position.
@@ -33,8 +36,3 @@ module Codebreaker
             7 - Codebreaker also has some number of hints(depends on chosen difficulty).
                 If a user takes a hint - he receives back a separate digit of the secret code.
    "
-    def self.rules
-      RULES
-    end
-  end
-end
