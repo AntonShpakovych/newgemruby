@@ -5,6 +5,7 @@ require:
 AllCops:
   Exclude:
     - 'codebreaker.gemspec'
+    - 'vendor/**/*.rb'
   TargetRubyVersion: 3.1.2
   NewCops: enable
 
