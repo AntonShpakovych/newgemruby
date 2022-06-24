@@ -1,4 +1,3 @@
 /coverage/
 default.yml
 .rspec_status
-spec/coverage/

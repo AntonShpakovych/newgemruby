@@ -3,6 +3,11 @@
 require_relative '../lib/codebreaker'
 require 'simplecov'
 
+SimpleCov.start do
+  add_filter(%r{^/spec/})
+end
+SimpleCov.minimum_coverage 100
+
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
   config.example_status_persistence_file_path = '.rspec_status'
@@ -14,7 +19,3 @@ RSpec.configure do |config|
     c.syntax = :expect
   end
 end
-
-SimpleCov.start
-SimpleCov.minimum_coverage 100
-SimpleCov.add_filter(%r{^/spec/})
