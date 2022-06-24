@@ -24,12 +24,12 @@ module Codebreaker
       validate_file? ? sort_store(YAML.load_file(@filename, **YAML_OPTIONS)) : raise(StandardError, I18n.t(:bad_file))
     end
 
+    private
+
     def sort_store(data)
       sort_attemps_hints = data.sort_by { |hints| hints[:hints_used] }.sort_by { |attempts| attempts[:attempts_used] }
       sort_attemps_hints.sort_by { |difficulty| difficulty[:hints_total] && difficulty[:attempts_total] }
     end
-
-    private
 
     def validate_file?
       File.exist?(@filename) && !File.zero?(@filename)
