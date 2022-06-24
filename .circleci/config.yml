@@ -38,6 +38,11 @@ commands:
             bundle exec rspec --format progress \
                               --out /tmp/test-results/rspec.xml \
                               $TEST_FILES
+  run_fasterer:
+    steps:
+      - run:
+          name: start fasterer
+          command: bundle exec fasterer
 jobs:
   lintering:
     executor: default
@@ -49,6 +54,11 @@ jobs:
     steps:
       - defaults
       - run_specs
+  run_fasterer:
+    executor: default
+    steps:
+      - defaults
+      - run_fasterer
 
 workflows:
   version: 2
@@ -56,3 +66,4 @@ workflows:
     jobs:
       - lintering
       - run_specs
+      - run_fasterer
