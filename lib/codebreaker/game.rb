@@ -4,6 +4,7 @@ module Codebreaker
   class Game
     include Validations
     include Constants::Shared
+
     attr_reader :user, :secret_code, :attempts, :hints, :type, :secret_code_for_hints, :win
 
     def initialize(user:, type_of_difficulty:)

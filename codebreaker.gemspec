@@ -33,7 +33,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'bundler', '~> 2.3.16'
   spec.add_dependency 'rake', '~> 13.0.6'
   spec.add_development_dependency 'fasterer', '~> 0.10.0'
-  spec.add_development_dependency 'require_all', '~> 3.0.0'
   spec.add_development_dependency 'rspec', '~> 3.0'
   spec.add_development_dependency 'rubocop', '~> 1.30.1'
   spec.add_development_dependency 'rubocop-performance', '~> 1.14.2'

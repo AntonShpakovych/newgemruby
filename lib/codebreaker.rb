@@ -2,7 +2,6 @@
 
 require 'yaml'
 require 'i18n'
-# require 'require_all'
 require_relative 'codebreaker/config/initializer/text_resources'
 require_relative 'codebreaker/helpers/constants'
 require_relative 'codebreaker/validations/validations'
