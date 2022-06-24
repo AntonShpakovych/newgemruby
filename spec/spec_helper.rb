@@ -1,12 +1,18 @@
 # frozen_string_literal: true
 
-require_relative '../lib/codebreaker'
 require 'simplecov'
-
 SimpleCov.start do
-  add_filter(%r{^/spec/})
+  enable_coverage :branch
+  add_filter %w[/spec/]
+  minimum_coverage 100
 end
-SimpleCov.minimum_coverage 100
+require_relative '../lib/codebreaker'
+# SimpleCov.start do
+#   add_filter(%r{^/spec/})
+# end
+# SimpleCov.minimum_coverage 100
+
+
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
