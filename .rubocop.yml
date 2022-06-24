@@ -20,3 +20,4 @@ Style/HashSyntax:
 
 Metrics/BlockLength:
   IgnoredMethods: ['describe', 'context']
+

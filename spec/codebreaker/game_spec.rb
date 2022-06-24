@@ -8,8 +8,12 @@ RSpec.describe Codebreaker::Game do
       expect(game.my_guess(1231)).to be_a_kind_of(Hash)
     end
 
-    it '.my_guess has validation input' do
-      expect { game.my_guess('1231') }.to raise_error(StandardError, I18n.t(:guess))
+    it '.my_guess has validation input_bad_range' do
+      expect { game.my_guess(1239) }.to raise_error(StandardError, I18n.t(:guess))
+    end
+
+    it '.my_guess has validation input_bad_type' do
+      expect { game.my_guess('1111') }.to raise_error(StandardError, I18n.t(:guess))
     end
 
     it '.my_guess reduce attempts' do

@@ -26,10 +26,22 @@ RSpec.describe Codebreaker::Statistics do
                             aliases: true).length).to eq(1)
     end
 
-    it '.show' do
+    it '.show give array' do
       statistics.add_to_data_store(game)
       statistics.save_unit
       expect(statistics.show).to be_kind_of(Array)
+    end
+
+    it '.show give array hash' do
+      statistics.show.each do |hash|
+        expect(hash.keys).to contain_exactly(:user,
+                                             :attempts_total, :attempts_used, :difficulty, :hints_total, :hints_used)
+      end
+    end
+
+    it ".show validate if file doesn't" do
+      new_statistics = described_class.new('someclearfile.yml')
+      expect { new_statistics.show }.to raise_error(StandardError, I18n.t(:bad_file))
     end
 
     it '.save_unit create_file' do
