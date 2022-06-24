@@ -3,10 +3,10 @@ require:
   - rubocop-rspec
   
 AllCops:
+  TargetRubyVersion: 3.1.2
   Exclude:
     - 'codebreaker.gemspec'
-    - 'vendor/**/*.rb'
-  TargetRubyVersion: 3.1.2
+    - 'vendor/bundle/**/*'
   NewCops: enable
 
 Layout/LineLength:
