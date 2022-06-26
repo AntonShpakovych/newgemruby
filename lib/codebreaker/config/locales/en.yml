@@ -1,10 +1,10 @@
 en:
-  guess: 'Number, required, length - 4 digits, each digit is a number in the range 1-6'
-  name: 'Name - string, required, min length - %{min_length} symbols, max length - %{max_length}'
+  guess: Number, required, length - %{length_good} digits, each digit is a number in the range %{correct_range_first} - %{correct_range_last}
+  name: Name - string, required, min length - %{min_length} symbols, max length - %{max_length}
   empty_data: "Don't have data for save"
   bad_file: "File doesn't exist or File doesn't have data"
-  message_for_attempts: 'You have not any attempts left'
-  message_for_hints: 'You have not any hints left'
+  message_for_attempts: You have not any attempts left
+  message_for_hints: You have not any hints left
   rules: "
             1 - Codebreaker is a logic game in which a code-breaker tries to break a secret code created
                         by a code-maker.

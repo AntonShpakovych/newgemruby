@@ -4,6 +4,8 @@ module Codebreaker
   class Statistics
     include Constants::Shared
 
+    attr_reader :filename
+
     PERMITTED_CLASSES = [Codebreaker::User, Symbol].freeze
     YAML_OPTIONS = { permitted_classes: PERMITTED_CLASSES, aliases: true }.freeze
 
@@ -36,11 +38,11 @@ module Codebreaker
     end
 
     def total_attempts(type)
-      TYPE[type][:attempts]
+      TYPE_OF_DIFFICULTY[type][:attempts]
     end
 
     def total_hints(type)
-      TYPE[type][:hints]
+      TYPE_OF_DIFFICULTY[type][:hints]
     end
 
     def data_to_save(game)

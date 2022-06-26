@@ -2,30 +2,25 @@
 
 module Codebreaker
   module Validations
+    include Constants::Shared
+
     MAX_LENGTH = 20
     MIN_LENGTH = 3
 
-    def self.included(base)
-      base.send :include, InstanceMethods
-      base.extend ClassMethods
+    def validate_for_name(name)
+      (MIN_LENGTH..MAX_LENGTH).cover?(name.length) ? name : error('name')
     end
 
-    module InstanceMethods
-      include Constants::Shared
-
-      def validate_for_guess(guess)
-        raise(StandardError, I18n.t(:guess)) if guess.to_s.length != 4 || !guess.is_a?(Integer)
-
-        guess.to_s.chars do |gues|
-          raise(StandardError, I18n.t(:guess)) unless CORRECT_RANGE.include?(gues.to_i)
-        end
-      end
+    def validate_for_guess(guess)
+      error('guess') unless guess.length == LENGTH_GOOD && guess.match(/[1-6]{4}/)
     end
 
-    module ClassMethods
-      def validate_for_name(name)
-        condition = name.is_a?(String) && (name.length >= MIN_LENGTH && name.length <= MAX_LENGTH)
-        condition ? name : raise(StandardError, I18n.t(:name, min_length: MIN_LENGTH, max_length: MAX_LENGTH))
+    def error(error_for)
+      case error_for
+      when 'name' then raise(StandardError, I18n.t(:name, min_length: MIN_LENGTH, max_length: MAX_LENGTH))
+      when 'guess' then raise(StandardError, I18n.t(:guess,
+                                                    length_good: LENGTH_GOOD, correct_range_first: CORRECT_RANGE.first,
+                                                    correct_range_last: CORRECT_RANGE.last))
       end
     end
   end

@@ -2,7 +2,7 @@
 
 module Codebreaker
   class User
-    include Validations
+    extend Validations
 
     attr_reader :name
 

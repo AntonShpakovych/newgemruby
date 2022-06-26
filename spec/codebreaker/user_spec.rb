@@ -1,16 +1,20 @@
 # frozen_string_literal: true
 
 RSpec.describe Codebreaker::User do
-  describe 'user has validate' do
-    it '#validate_for_name good' do
-      expect(described_class.validate_for_name('Anton')).to eq('Anton')
+  describe '.validate_for_name' do
+    context 'when good name' do
+      it 'good' do
+        expect(described_class.validate_for_name('Anton')).to eq('Anton')
+      end
     end
 
-    it '#validate_for_name bad' do
-      expect do
-        described_class.validate_for_name(1)
-      end.to raise_error(StandardError, I18n.t(:name, min_length: 3,
-                                                      max_length: 20))
+    context 'when bad name' do
+      it 'raise' do
+        expect do
+          described_class.validate_for_name('1')
+        end.to raise_error(StandardError, I18n.t(:name, min_length: Codebreaker::Validations::MIN_LENGTH,
+                                                        max_length: Codebreaker::Validations::MAX_LENGTH))
+      end
     end
   end
 end

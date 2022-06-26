@@ -13,37 +13,25 @@ module Codebreaker
     def check_guess
       temp_encryption = @encryption.dup
       temp_hypothesis = @hypothesis.dup
-      each_for_plus(temp_hypothesis, temp_encryption)
-      each_for_minus(temp_hypothesis, temp_encryption)
+      each_for_index(temp_hypothesis, temp_encryption)
+      each_for_include(temp_hypothesis, temp_encryption)
       @store
     end
 
     private
 
-    def for_plus(temp_guess, index, temp_object)
+    def for_index(temp_guess, index, temp_object)
       @store[:index] += 1
       temp_object.delete_at(index)
       temp_guess.delete_at(index)
     end
 
-    def each_for_plus(temp_guess, temp_object)
-      initial_index = 0
-      while initial_index < temp_guess.length
-        if temp_guess[initial_index] == temp_object[initial_index]
-          for_plus(temp_guess, initial_index, temp_object)
-        else
-          initial_index += 1
-        end
-      end
+    def each_for_index(temp_guess, temp_object)
+      temp_object.zip(temp_guess).map { |o, g| for_index(temp_guess, temp_guess.index(o), temp_object) if g == o }
     end
 
-    def each_for_minus(temp_guess, temp_object)
-      temp_guess.to_s.chars.each do |gues|
-        if temp_object.include?(gues)
-          @store[:include] += 1
-          temp_object.delete_at(temp_object.index(gues))
-        end
-      end
+    def each_for_include(temp_guess, temp_object)
+      @store[:include] += temp_object.length - (temp_object - temp_guess).length
     end
   end
 end
