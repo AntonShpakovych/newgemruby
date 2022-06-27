@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
                       creates a secret code of four numbers between 1 and 6.
                       The codebreaker gets some number of chances to break the code (depends on chosen difficulty).
                       In each turn, the codebreaker makes a guess of 4 numbers."
-  spec.homepage = 'https://github.com/AntonShpakovych/RubyGarage_CodebreakerGem'
+  spec.homepage =  "https://github.com/AntonShpakovych/newgemruby"
   spec.license = 'MIT'
   spec.required_ruby_version = '~> 3.1.2'
   spec.metadata['allowed_push_host'] = "https://github.com/AntonShpakovych/newgemruby"
