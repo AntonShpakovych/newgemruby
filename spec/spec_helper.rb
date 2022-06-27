@@ -7,8 +7,7 @@ SimpleCov.start do
   add_filter %w[/spec/]
   minimum_coverage 100
 end
-
-require_relative '../lib/codebreaker'
+require 'codebreaker'
 
 RSpec.configure do |config|
   config.example_status_persistence_file_path = '.rspec_status'
