@@ -5,7 +5,6 @@ require:
 AllCops:
   TargetRubyVersion: 3.1.2
   Exclude:
-    - 'codebreaker.gemspec'
     - 'vendor/bundle/**/*'
   NewCops: enable
 
@@ -19,5 +18,9 @@ Style/HashSyntax:
   Enabled: false
 
 Metrics/BlockLength:
+  Exclude:
+    - 'codebreaker.gemspec'
   IgnoredMethods: ['describe', 'context']
 
+RSpec/MultipleMemoizedHelpers:
+  Enabled: False

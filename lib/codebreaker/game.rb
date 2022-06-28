@@ -23,12 +23,12 @@ module Codebreaker
 
       @result = GuessChecker.new(guess.chars, @secret_code).check_guess
       @attempts -= 1
-      @win = won?(@result)
+      @win = won?
       @result
     end
 
     def give_hints
-      @hints.positive? ? check_hints(@secret_code_for_hints) : raise(StandardError, I18n.t(:message_for_hints))
+      @hints.positive? ? check_hints : raise(StandardError, I18n.t(:message_for_hints))
     end
 
     def self.user_validate_in_game?(user)
@@ -41,13 +41,13 @@ module Codebreaker
 
     private
 
-    def won?(result)
-      result[:index] == WINNING_INDEX
+    def won?
+      @result[:index] == WINNING_INDEX
     end
 
-    def check_hints(secret_code_for_hints)
+    def check_hints
       @hints -= 1
-      secret_code_for_hints.pop
+      @secret_code_for_hints.pop
     end
   end
 end

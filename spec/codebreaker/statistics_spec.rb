@@ -2,8 +2,18 @@
 
 RSpec.describe Codebreaker::Statistics do
   let(:statistics) { described_class.new }
-  let(:game) { Codebreaker::Game.new(user: Codebreaker::User.new('Anton1'), type_of_difficulty: :easy) }
-  let(:permitted_classes) { [Codebreaker::User, Symbol].freeze }
+  let(:user) { 'Anton' }
+  let(:user2) { 'Stas' }
+  let(:user3) { 'Anya' }
+  let(:user4) { 'Vanya' }
+  let(:difficulty) { :easy }
+  let(:difficulty2) { :medium }
+  let(:difficulty3) { :hell }
+  let(:game) { Codebreaker::Game.new(user: user, type_of_difficulty: difficulty) }
+  let(:game2) { Codebreaker::Game.new(user: user2, type_of_difficulty: difficulty3) }
+  let(:game3) { Codebreaker::Game.new(user: user3, type_of_difficulty: difficulty3) }
+  let(:game4) { Codebreaker::Game.new(user: user4, type_of_difficulty: difficulty2) }
+  let(:permitted_classes) { Codebreaker::Statistics::PERMITTED_CLASSES }
 
   describe 'statistics have validation' do
     it 'validate_file?' do
@@ -79,15 +89,48 @@ RSpec.describe Codebreaker::Statistics do
   end
 
   describe 'private sort_store' do
-    data_sorted = [
-      { user: 'Anton', difficulty: :hell, attempts_total: 5, attempts_used: 1, hints_total: 2, hints_used: 0 },
-      { user: 'Stas', difficulty: :hell, attempts_total: 5, attempts_used: 3, hints_total: 2, hints_used: 2 },
-      { user: 'Vanya', difficulty: :easy, attempts_total: 15, attempts_used: 1, hints_total: 4, hints_used: 0 }
-    ]
-    let(:sorted_data) { data_sorted }
+    let(:data_sorted) do
+      [
+        { attempts_total: 5,
+          attempts_used: 1,
+          difficulty: difficulty3,
+          hints_total: 1,
+          hints_used: 1,
+          user: 'Anya' },
+        { attempts_total: 5,
+          attempts_used: 4,
+          difficulty: difficulty3,
+          hints_total: 1,
+          hints_used: 0,
+          user: 'Stas' },
+        { attempts_total: 10,
+          attempts_used: 0,
+          difficulty: difficulty2,
+          hints_total: 1,
+          hints_used: 0,
+          user: 'Vanya' },
+        { attempts_total: 15,
+          attempts_used: 0,
+          difficulty: difficulty,
+          hints_total: 2,
+          hints_used: 0,
+          user: 'Anton' }
+      ]
+    end
 
-    it 'return sorting array with hashes in correct order' do
-      allow(statistics).to receive(:sort_store).and_return(sorted_data)
+    before do
+      game2.instance_variable_set(:@attempts, 1)
+      game3.instance_variable_set(:@attempts, 4)
+      game3.instance_variable_set(:@hints, 0)
+      statistics.add_to_data_store(game)
+      statistics.add_to_data_store(game2)
+      statistics.add_to_data_store(game3)
+      statistics.add_to_data_store(game4)
+      statistics.save_unit
+    end
+
+    it '#show gives sorted_data' do
+      expect(statistics.show).to eq(data_sorted)
     end
   end
 end

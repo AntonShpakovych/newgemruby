@@ -9,6 +9,8 @@ module Codebreaker
       TYPE_OF_DIFFICULTY = { easy: { attempts: 15, hints: 2 },
                              medium: { attempts: 10, hints: 1 },
                              hell: { attempts: 5, hints: 1 } }.freeze
+
+      REGULAR_FOR_CODE = /\A[1-6]{4}\z/
     end
   end
 end

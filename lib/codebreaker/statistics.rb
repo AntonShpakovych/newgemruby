@@ -8,8 +8,9 @@ module Codebreaker
 
     PERMITTED_CLASSES = [Codebreaker::User, Symbol].freeze
     YAML_OPTIONS = { permitted_classes: PERMITTED_CLASSES, aliases: true }.freeze
+    FILENAME = 'default.yml'
 
-    def initialize(filename = 'default.yml')
+    def initialize(filename = FILENAME)
       @filename = filename
       @data_store = []
     end
@@ -23,7 +24,7 @@ module Codebreaker
     end
 
     def show
-      validate_file? ? sort_store(YAML.load_file(@filename, **YAML_OPTIONS)) : raise(StandardError, I18n.t(:bad_file))
+      file_valid? ? sort_store(YAML.load_file(@filename, **YAML_OPTIONS)) : raise(StandardError, I18n.t(:bad_file))
     end
 
     private
@@ -33,7 +34,7 @@ module Codebreaker
       sort_attemps_hints.sort_by { |difficulty| difficulty[:hints_total] && difficulty[:attempts_total] }
     end
 
-    def validate_file?
+    def file_valid?
       File.exist?(@filename) && !File.zero?(@filename)
     end
 

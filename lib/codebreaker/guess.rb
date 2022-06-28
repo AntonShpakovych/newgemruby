@@ -27,7 +27,9 @@ module Codebreaker
     end
 
     def each_for_index(temp_guess, temp_object)
-      temp_object.zip(temp_guess).map { |o, g| for_index(temp_guess, temp_guess.index(o), temp_object) if g == o }
+      temp_object.zip(temp_guess).map do |item_object, item_guess|
+        for_index(temp_guess, temp_guess.index(item_object), temp_object) if item_object == item_guess
+      end
     end
 
     def each_for_include(temp_guess, temp_object)
