@@ -18,11 +18,15 @@ Gem::Specification.new do |spec|
   spec.homepage =  'https://github.com/AntonShpakovych/newgemruby'
   spec.license = 'MIT'
   spec.required_ruby_version = '~> 2.7.3'
-  spec.metadata['allowed_push_host'] = 'https://github.com/AntonShpakovych/newgemruby'
+  spec.metadata['allowed_push_host'] = 'rubygems.org'
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = spec.homepage
   spec.metadata['changelog_uri'] = "#{spec.homepage}/CHANGELOG.md"
-  spec.files = Dir['{circleci,lib,codebreaker/config,spec/factories,spec/fixtures}/**/*', '*.md']
+  spec.files = Dir.chdir(__dir__) do
+    `git ls-files -z`.split("\x0").reject do |f|	
+      (f == __FILE__) || f.match(%r{\A(?:(?:bin|test|spec|features)/|\.(?:git|travis|circleci)|appveyor)})	
+    end	
+  end
   spec.bindir = 'exe'
   spec.executables = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ['lib']
