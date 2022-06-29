@@ -13,7 +13,6 @@ RSpec.describe Codebreaker::Statistics do
   let(:game2) { Codebreaker::Game.new(user: user2, type_of_difficulty: difficulty3) }
   let(:game3) { Codebreaker::Game.new(user: user3, type_of_difficulty: difficulty3) }
   let(:game4) { Codebreaker::Game.new(user: user4, type_of_difficulty: difficulty2) }
-  let(:permitted_classes) { Codebreaker::Statistics::PERMITTED_CLASSES }
 
   describe 'statistics have validation' do
     it 'validate_file?' do
@@ -32,7 +31,7 @@ RSpec.describe Codebreaker::Statistics do
   end
 
   describe '#save_unit' do
-    let(:result) { YAML.load_file(statistics.filename, permitted_classes: permitted_classes, aliases: true) }
+    let(:result) { YAML.load_file(statistics.filename) }
 
     context 'when data store not empty' do
       before do

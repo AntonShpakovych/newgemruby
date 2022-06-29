@@ -6,8 +6,6 @@ module Codebreaker
 
     attr_reader :filename
 
-    PERMITTED_CLASSES = [Codebreaker::User, Symbol].freeze
-    YAML_OPTIONS = { permitted_classes: PERMITTED_CLASSES, aliases: true }.freeze
     FILENAME = 'default.yml'
 
     def initialize(filename = FILENAME)
@@ -24,7 +22,7 @@ module Codebreaker
     end
 
     def show
-      file_valid? ? sort_store(YAML.load_file(@filename, **YAML_OPTIONS)) : raise(StandardError, I18n.t(:bad_file))
+      file_valid? ? sort_store(YAML.load_file(@filename)) : raise(StandardError, I18n.t(:bad_file))
     end
 
     private

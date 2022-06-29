@@ -17,7 +17,7 @@ Gem::Specification.new do |spec|
                       In each turn, the codebreaker makes a guess of 4 numbers."
   spec.homepage =  'https://github.com/AntonShpakovych/newgemruby'
   spec.license = 'MIT'
-  spec.required_ruby_version = '~> 3.1.2'
+  spec.required_ruby_version = '~> 2.7.3'
   spec.metadata['allowed_push_host'] = 'https://github.com/AntonShpakovych/newgemruby'
   spec.metadata['homepage_uri'] = spec.homepage
   spec.metadata['source_code_uri'] = spec.homepage
