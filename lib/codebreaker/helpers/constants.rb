@@ -5,12 +5,12 @@ module Codebreaker
     module Shared
       WINNING_INDEX = 4
       LENGTH_GOOD = 4
-      CORRECT_RANGE = (1..6)
+      CORRECT_RANGE = (1..6).freeze
       TYPE_OF_DIFFICULTY = { easy: { attempts: 15, hints: 2 },
                              medium: { attempts: 10, hints: 1 },
                              hell: { attempts: 5, hints: 1 } }.freeze
 
-      REGULAR_FOR_CODE = /\A[1-6]{4}\z/
+      REGULAR_FOR_CODE = /\A[1-6]{4}\z/.freeze
     end
   end
 end
