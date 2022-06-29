@@ -2,7 +2,7 @@ PATH
   remote: .
   specs:
     codebreaker (0.1.0)
-      bundler (~> 2.3.16)
+      bundler (~> 2.3.7)
       rake (~> 13.0.6)
       yaml (~> 0.2.0)
 
@@ -82,4 +82,4 @@ DEPENDENCIES
   simplecov (~> 0.21.2)
 
 BUNDLED WITH
-   2.3.16
+   2.3.7
