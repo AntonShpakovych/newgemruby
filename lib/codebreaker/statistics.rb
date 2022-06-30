@@ -18,7 +18,11 @@ module Codebreaker
     end
 
     def save_unit
-      @data_store.empty? ? raise(StandardError, I18n.t(:empty_data)) : File.write(@filename, @data_store.to_yaml)
+      raise(StandardError, I18n.t(:empty_data)) if @data_store.empty?
+
+      File.open(@filename, 'a') do |f|
+        f << @data_store.to_yaml
+      end
     end
 
     def show

@@ -118,6 +118,7 @@ RSpec.describe Codebreaker::Statistics do
     end
 
     before do
+      File.truncate(statistics.filename, 0)
       game2.instance_variable_set(:@attempts, 1)
       game3.instance_variable_set(:@attempts, 4)
       game3.instance_variable_set(:@hints, 0)
