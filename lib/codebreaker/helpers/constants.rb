@@ -10,7 +10,7 @@ module Codebreaker
                              medium: { attempts: 10, hints: 1 },
                              hell: { attempts: 5, hints: 1 } }.freeze
 
-      REGULAR_FOR_CODE = /\A[1-6]{4}\z/.freeze
+      REGULAR_FOR_CODE = /\A#{CORRECT_RANGE.to_a}{4}\z/.freeze
     end
   end
 end
