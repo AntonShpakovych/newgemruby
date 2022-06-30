@@ -98,21 +98,23 @@ RSpec.describe Codebreaker::Game do
   end
 
   describe '.type_of_difficulty_validate?' do
+    let(:difficulty_key) { Codebreaker::Constants::Shared::TYPE_OF_DIFFICULTY.keys }
+
     context 'when good type' do
-      let(:difficulty_key) { Codebreaker::Constants::Shared::TYPE_OF_DIFFICULTY.keys }
+      let(:validate_type) { described_class.type_of_difficulty_validate?('easy') }
+      let(:somegoodtype) { :easy }
 
       it 'good type' do
-        difficulty_key.each do |diff_type|
-          expect(described_class).to be_type_of_difficulty_validate(diff_type)
-        end
+        expect(validate_type).to eq(somegoodtype)
       end
     end
 
     context 'when bad type' do
-      let(:somebadtype) { :this_type_not_in_type_if_difficulty }
+      let(:somebadtype) { described_class.type_of_difficulty_validate?('somebadtype') }
 
       it 'bad type' do
-        expect(described_class).not_to be_type_of_difficulty_validate(somebadtype)
+        expect { somebadtype }.to raise_error(StandardError, I18n.t(:message_for_difficulty,
+                                                                    difficulty: difficulty_key))
       end
     end
   end

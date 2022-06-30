@@ -36,7 +36,9 @@ module Codebreaker
     end
 
     def self.type_of_difficulty_validate?(difficulty)
-      TYPE_OF_DIFFICULTY.key?(difficulty.to_sym)
+      condition = TYPE_OF_DIFFICULTY.key?(difficulty.to_sym)
+      correct = TYPE_OF_DIFFICULTY.keys
+      condition ? difficulty.to_sym : raise(StandardError, I18n.t(:message_for_difficulty, difficulty: correct))
     end
 
     private

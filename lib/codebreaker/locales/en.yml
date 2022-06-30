@@ -5,6 +5,7 @@ en:
   bad_file: "File doesn't exist or File doesn't have data"
   message_for_attempts: You have not any attempts left
   message_for_hints: You have not any hints left
+  message_for_difficulty: The game has such difficulty levels - %{difficulty}
   rules: "
             1 - Codebreaker is a logic game in which a code-breaker tries to break a secret code created
                         by a code-maker.
