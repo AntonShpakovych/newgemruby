@@ -21,7 +21,7 @@ module Codebreaker
       raise(StandardError, I18n.t(:empty_data)) if @data_store.empty?
 
       File.open(@filename, 'a') do |f|
-        f << @data_store.to_yaml
+        f.write(@data_store.to_yaml)
       end
     end
 
