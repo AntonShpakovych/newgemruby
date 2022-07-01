@@ -40,7 +40,7 @@ RSpec.describe Codebreaker::Statistics do
       end
 
       it 'save' do
-        expect(result.length).to eq(1)
+        expect(result.length).to eq(2)
       end
 
       it 'create_file' do

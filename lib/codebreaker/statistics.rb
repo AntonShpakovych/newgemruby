@@ -20,8 +20,11 @@ module Codebreaker
     def save_unit
       raise(StandardError, I18n.t(:empty_data)) if @data_store.empty?
 
+      data_save = @data_store.to_yaml
+      data_save.slice!('---')
+
       File.open(@filename, 'a') do |f|
-        f.write(@data_store.to_yaml)
+        f.write(data_save)
       end
     end
 
