@@ -21,14 +21,19 @@ module Codebreaker
     private
 
     def for_index(temp_guess, index, temp_object)
-      @store[:index] += 1
       temp_object.delete_at(index)
       temp_guess.delete_at(index)
+      @store[:index] += 1
     end
 
     def each_for_index(temp_guess, temp_object)
-      temp_object.zip(temp_guess).map do |item_object, item_guess|
-        for_index(temp_guess, temp_guess.index(item_object), temp_object) if item_object == item_guess
+      index = 0
+      temp_object.zip(temp_guess).map do |item|
+        if item[0] == item[1]
+          for_index(temp_guess, index, temp_object)
+        else
+          index += 1
+        end
       end
     end
 
