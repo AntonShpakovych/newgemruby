@@ -57,7 +57,8 @@ module Codebreaker
         attempts_total: total_attempts(game.type),
         attempts_used: total_attempts(game.type) - game.attempts,
         hints_total: total_hints(game.type),
-        hints_used: total_hints(game.type) - game.hints }
+        hints_used: total_hints(game.type) - game.hints,
+        date: Time.now.strftime('%d/%m/%Y %k:%M') }
     end
   end
 end

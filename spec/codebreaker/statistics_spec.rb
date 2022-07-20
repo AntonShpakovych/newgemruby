@@ -75,7 +75,7 @@ RSpec.describe Codebreaker::Statistics do
       it 'array with hashes' do
         statistics.show.each do |hash|
           expect(hash.keys).to contain_exactly(:user,
-                                               :attempts_total, :attempts_used, :difficulty, :hints_total, :hints_used)
+                                               :attempts_total, :attempts_used, :difficulty, :hints_total, :hints_used, :date)
         end
       end
     end
@@ -88,6 +88,7 @@ RSpec.describe Codebreaker::Statistics do
   end
 
   describe 'private sort_store' do
+    let(:date_for_test) { Time.now.strftime('%d/%m/%Y %k:%M') }
     let(:data_sorted) do
       [
         { attempts_total: 5,
@@ -95,25 +96,32 @@ RSpec.describe Codebreaker::Statistics do
           difficulty: difficulty3,
           hints_total: 1,
           hints_used: 1,
-          user: 'Anya' },
+          user: 'Anya',
+          date: date_for_test },
+
         { attempts_total: 5,
           attempts_used: 4,
           difficulty: difficulty3,
           hints_total: 1,
           hints_used: 0,
-          user: 'Stas' },
+          user: 'Stas',
+          date: date_for_test },
+
         { attempts_total: 10,
           attempts_used: 0,
           difficulty: difficulty2,
           hints_total: 1,
           hints_used: 0,
-          user: 'Vanya' },
+          user: 'Vanya',
+          date: date_for_test },
+
         { attempts_total: 15,
           attempts_used: 0,
           difficulty: difficulty,
           hints_total: 2,
           hints_used: 0,
-          user: 'Anton' }
+          user: 'Anton',
+          date: date_for_test }
       ]
     end
 
