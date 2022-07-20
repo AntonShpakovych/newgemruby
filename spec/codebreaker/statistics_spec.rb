@@ -75,7 +75,8 @@ RSpec.describe Codebreaker::Statistics do
       it 'array with hashes' do
         statistics.show.each do |hash|
           expect(hash.keys).to contain_exactly(:user,
-                                               :attempts_total, :attempts_used, :difficulty, :hints_total, :hints_used, :date)
+                                               :attempts_total,
+                                               :attempts_used, :difficulty, :hints_total, :hints_used, :date)
         end
       end
     end
