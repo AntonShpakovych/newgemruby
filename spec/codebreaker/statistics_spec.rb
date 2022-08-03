@@ -2,10 +2,10 @@
 
 RSpec.describe Codebreaker::Statistics do
   let(:statistics) { described_class.new }
-  let(:user) { 'Anton' }
-  let(:user2) { 'Stas' }
-  let(:user3) { 'Anya' }
-  let(:user4) { 'Vanya' }
+  let(:user) { Codebreaker::User.new('Anton') }
+  let(:user2) { Codebreaker::User.new('Stas') }
+  let(:user3) { Codebreaker::User.new('Anya') }
+  let(:user4) { Codebreaker::User.new('Vanya') }
   let(:difficulty) { :easy }
   let(:difficulty2) { :medium }
   let(:difficulty3) { :hell }

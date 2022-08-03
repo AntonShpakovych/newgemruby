@@ -52,13 +52,17 @@ module Codebreaker
     end
 
     def data_to_save(game)
-      { user: game.user,
+      { user: game.user.name,
         difficulty: game.type,
         attempts_total: total_attempts(game.type),
         attempts_used: total_attempts(game.type) - game.attempts,
         hints_total: total_hints(game.type),
         hints_used: total_hints(game.type) - game.hints,
-        date: Time.now.strftime('%d/%m/%Y %k:%M') }
+        date: date_to_str }
+    end
+
+    def date_to_str
+      Time.now.strftime('%d/%m/%Y %k:%M').to_s
     end
   end
 end
